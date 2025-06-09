@@ -144,3 +144,5 @@ eval "$(pyenv init - zsh)"
 
 # Created by `pipx` on 2025-05-21 12:57:01
 export PATH="$PATH:/home/gdromanov/.local/bin"
+
+[[ -s "/Users/g.d.romanov/.gvm/scripts/gvm" ]] && source "/Users/g.d.romanov/.gvm/scripts/gvm"
