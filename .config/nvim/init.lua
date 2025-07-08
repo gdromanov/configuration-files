@@ -687,7 +687,7 @@ require("lazy").setup({
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				-- ts_ls = {},
+				ts_ls = {},
 				--
 
 				lua_ls = {
@@ -765,7 +765,7 @@ require("lazy").setup({
 			},
 		},
 		opts = {
-			notify_on_error = false,
+			notify_on_error = true,
 			format_on_save = function(bufnr)
 				-- Disable "format_on_save lsp_fallback" for languages that don't
 				-- have a well standardized coding style. You can add additional
@@ -783,6 +783,7 @@ require("lazy").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
 				go = { "gofmt" },
+				javascript = { "eslint" },
 				-- Conform can also run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				--
@@ -1101,5 +1102,5 @@ vim.api.nvim_set_keymap("n", "<C-i>", ":lua vim.diagnostic.open_float()<CR>", { 
 
 vim.cmd("autocmd BufEnter * set formatoptions-=cro")
 vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
-vim.cmd('autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))')
-vim.cmd('autocmd VimLeave * call system("tmux rename-window zsh")')
+vim.cmd('autocmd BufReadPost,FileReadPost,BufNewFile,BufEnter * call system("tmux rename-window " . expand("%:t"))')
+vim.cmd('autocmd VimLeave * call system("tmux set-option -w automatic-rename on")')
